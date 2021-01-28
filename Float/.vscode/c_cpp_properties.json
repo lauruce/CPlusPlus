@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/chengdu/WorkSpace/C++/boost_1_75_0/build/include"
+            ],
+            "browse": {
+                "path": [
+                    "/home/chengdu/WorkSpace/C++/boost_1_75_0/build/lib" 
+                ]
+            },
+            "defines": [],
+            "compilerPath": "/usr/local/bin/clang",
+            "cStandard": "c18",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
