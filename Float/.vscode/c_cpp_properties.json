@@ -4,11 +4,11 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/chengdu/WorkSpace/C++/boost_1_75_0/build/include"
+                "/home/chengdu/WorkSpace/3rdParty/boost_1_75_0/build/include"
             ],
             "browse": {
                 "path": [
-                    "/home/chengdu/WorkSpace/C++/boost_1_75_0/build/lib" 
+                    "/home/chengdu/WorkSpace/3rdParty/boost_1_75_0/build/lib" 
                 ]
             },
             "defines": [],
