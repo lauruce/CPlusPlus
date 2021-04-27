@@ -1,0 +1,26 @@
+#!/bin/bash
+
+CUR_SOURCE_ROOT=${PWD}
+
+CUR_CMAKE_FILE=$CUR_SOURCE_ROOT/CMakeLists.txt
+if [ ! -e $CUR_CMAKE_FILE ];then
+    echo "Error:can not find CMakeLists.txt!"
+    exit 1
+fi
+
+convertor_sourcedir_to_module_tempdir()
+{
+    REPO_ROOT_FOR_SED=$(echo $REPO_ROOT | sed -e 's/\//\\\//g')
+    TEMP_MODULE_ROOT_FOR_SED=$(echo $OUTPUT_TEMP_BUILD | sed -e 's/\//\\\//g')
+    echo $(echo $1 | sed -e s/${REPO_ROOT_FOR_SED}/${TEMP_MODULE_ROOT_FOR_SED}/)
+}
+
+CUR_EXTERNALLY_COMPILED_FOLDER=$(convertor_sourcedir_to_module_tempdir $CUR_SOURCE_ROOT)
+echo $CUR_EXTERNALLY_COMPILED_FOLDER
+
+if [ ! -d $CUR_EXTERNALLY_COMPILED_FOLDER ];then
+    echo "create the folder:$CUR_EXTERNALLY_COMPILED_FOLDER"
+    mkdir -p $CUR_EXTERNALLY_COMPILED_FOLDER
+fi
+
+cd $CUR_EXTERNALLY_COMPILED_FOLDER && cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE $CUR_SOURCE_ROOT && make all
