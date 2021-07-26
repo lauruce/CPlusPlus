@@ -1,19 +1,4 @@
-template<typename T>
-struct ChainNode
-{
-    T Element;
-    ChainNode<T> *Next;
-};
-
-template<typename T>
-class LinkedList
-{
-public:
-    LinkedList(){}
-    ~LinkedList(){}
-private:
-    ChainNode<T> *m_FirstElem;
-};
+#include <iostream>
 
 template<typename T>
 struct ChainNode
@@ -34,27 +19,49 @@ public:
     LinkedList();
     ~LinkedList();
     void AddElement(T Ele);
+    void PrintLinkedList();
 };
 
 template<typename T>
 LinkedList<T>::LinkedList()
 {
-    m_FirstElem = nullptr;
+    m_FirstNode = nullptr;
 }
 
 template<typename T>
 LinkedList<T>::~LinkedList()
 {
-    while(m_FirstElem != nullptr)
+    while(m_FirstNode != nullptr)
     {
-        ChainNode<T>* NextNode = m_FirstElem->Next;
-        delete m_FirstElem;
-        m_FirstElem = NextNode;
+        ChainNode<T>* NextNode = m_FirstNode->Next;
+        delete m_FirstNode;
+        m_FirstNode = NextNode;
     }
 }
 
 template<typename T>
 void LinkedList<T>::AddElement(T Ele)
 {
-    
+    ChainNode<T>* pTempNode = new ChainNode<T>;
+    pTempNode->Element = Ele;
+    if(m_FirstNode != nullptr)
+    {
+        pTempNode->Next = m_FirstNode;
+    }
+
+    m_FirstNode = pTempNode;
+}
+
+template<typename T>
+void LinkedList<T>::PrintLinkedList()
+{
+    std::cout << "LinkedList value: ";
+    ChainNode<T>* pTempNode = m_FirstNode;
+    while(pTempNode != nullptr)
+    {
+        std::cout << pTempNode->Element << " ";
+        pTempNode = pTempNode->Next;
+    }
+
+    std::cout << std::endl;
 }
